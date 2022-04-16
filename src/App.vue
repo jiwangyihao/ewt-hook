@@ -27,12 +27,12 @@ const player = ref()
 const pause = ref(true)
 
 watch(
-  () => route.params,
-  async newParams => {
-    if (newParams.pathMatch==="") {
+  () => route.fullPath,
+  async newPath => {
+    if (newPath==="/") {
       href.value = "https://www.ewt360.com/"
     } else {
-      href.value = "https://web.ewt360.com/" + newParams.pathMatch.join("/")
+      href.value = "https://web.ewt360.com" + newPath
     }
   }
 )
@@ -386,7 +386,7 @@ window.onload=function () {
       ]
     })
   } else {
-    href.value = "https://web.ewt360.com/" + route.params.pathMatch.join("/")
+    href.value = "https://web.ewt360.com" + route.fullPath
     setInterval(function() {
       document.querySelector("#focusHelp").focus()
     }, 100)
