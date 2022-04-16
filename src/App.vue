@@ -307,7 +307,7 @@ function keyup (event) {
       }
     },
     KeyH: function () {
-      router.push("/weekendElitePc")
+      router.push("/weekendElitePc/#/")
     },
     KeyO: function () {
       $q.notify("播放模式：顺序播放")
@@ -372,7 +372,7 @@ window.onload=function () {
           label: 'OK',
           color: 'white',
           handler: () => {
-            router.push("/weekendElitePc")
+            router.push("/weekendElitePc/#/")
             $q.notify({
               message: '要打开任何链接，请右键复制链接地址后按Ctrl + V',
               timeout: 0,
