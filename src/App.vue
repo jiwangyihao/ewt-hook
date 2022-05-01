@@ -127,7 +127,7 @@ let netMusic = {
           console.log(reason)
           this.isPaused=true
           pause.value=true
-          if (reason==="DOMException: Failed to load because no supported source was found.") {
+          if (reason.toString()==="DOMException: Failed to load because no supported source was found.") {
             console.log(player.value.error)
             if (player.value.error.code===4&&player.value.error.message==="") {
               netMusic.refreshSongUrl()
@@ -189,7 +189,7 @@ let netMusic = {
             throw new Error(`ID${node.trackId.id}请求失败`)
           }
           lastNode.nextNode = node
-          node.src=data
+          node.src=`https://music.163.com/song/media/outer/url?id=${node.trackId.id}.mp3`
           if (num > 10) {
             netMusic.orderListCache = orderList
             callback()
@@ -460,11 +460,13 @@ input {
   border-radius: 4vmin;
   opacity: 0;
   visibility: hidden;
+  filter: blur(2px);
   transition: {
-    property: width, height, opacity, visibility;
-    duration: .5s, .5s, .5s, 0s;
-    delay: 0s, 0s, 0s, .5s;
+    property: width, height, opacity, filter, visibility;
+    duration: .5s, .5s, .5s, .5s, 0s;
+    delay: 0s, 0s, 0s, 0s, .5s;
   };
+  will-change: width, height, opacity, filter, visibility;
 }
 
 .fullscreen {
@@ -487,6 +489,7 @@ input {
   #mouseHelp {
     width: 8vmin;
     height: 8vmin;
+    filter: unset;
   }
 }
 </style>
